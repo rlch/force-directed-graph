@@ -36,7 +36,7 @@ class FruchtermanReingoldAlgorithm {
   double _attractive(Edge edge) => pow(edge.d, 2) / k;
 
   // Resembles gravitational pull, with nodes simulated as particles.
-  double _repulsive(Edge edge) => pow(k, 2) / edge.d;
+  double _repulsive(Edge edge) => pow(k, 2) / ((edge.d < 0.01) ? 0.01 : edge.d);
 
   // Computes `iters` iterations of the Fruchterman-Reingold algorithm.
   Stream<Iterable<Vertex>> compute([int iters = 200, double t = 1]) async* {
